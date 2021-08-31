@@ -23,25 +23,27 @@ class KeyBindings:
         def not_help_mode() -> bool:
             return not self.help_mode
 
-        @self.key_bindings.add("enter", filter=help_mode)
-        @self.key_bindings.add("c-q", filter=help_mode)
-        @self.key_bindings.add("escape", filter=help_mode)
-        def quit_help(event):
-            self.quitting = False
-            self.quit_help()
+        # @self.key_bindings.add("enter", filter=help_mode)
+        # @self.key_bindings.add("c-q", filter=help_mode)
+        # @self.key_bindings.add("escape", filter=help_mode)
+        # def quit_help(event):
+        #     self.quitting = False
+        #     self.quit_help()
 
         @self.key_bindings.add("up", filter=help_mode)
+        @self.key_bindings.add("k", filter=help_mode)
         def scroll_help_up(event):
             self.scroll_help_up()
 
         @self.key_bindings.add("down", filter=help_mode)
+        @self.key_bindings.add("j", filter=help_mode)
         def scroll_help_down(event):
             self.scroll_help_down()
 
-        @self.key_bindings.add("c-h", filter=command_mode)
-        def c_h(event):
-            self.quitting = False
-            self.show_help()
+        # @self.key_bindings.add("c-h", filter=command_mode)
+        # def c_h(event):
+        #     self.quitting = False
+        #     self.show_help()
 
         @self.key_bindings.add("c-q", filter=not_help_mode)
         async def c_q(event):
@@ -52,7 +54,7 @@ class KeyBindings:
             self.quitting = False
             self.save()
 
-        @self.key_bindings.add("enter", filter=command_mode)
+        @self.key_bindings.add("i", filter=command_mode)
         def enter_cell(event):
             self.quitting = False
             self.enter_cell()
@@ -62,22 +64,22 @@ class KeyBindings:
             self.quitting = False
             self.exit_cell()
 
-        @self.key_bindings.add("up", filter=command_mode)
+        @self.key_bindings.add("k", filter=command_mode)
         def up(event):
             self.quitting = False
             self.go_up()
 
-        @self.key_bindings.add("down", filter=command_mode)
+        @self.key_bindings.add("j", filter=command_mode)
         def down(event):
             self.quitting = False
             self.go_down()
 
-        @self.key_bindings.add("c-up", filter=command_mode)
+        @self.key_bindings.add("c-k", filter=command_mode)
         def c_up(event):
             self.quitting = False
             self.move_up()
 
-        @self.key_bindings.add("c-down", filter=command_mode)
+        @self.key_bindings.add("c-j", filter=command_mode)
         def c_down(event):
             self.quitting = False
             self.move_down()
@@ -97,7 +99,7 @@ class KeyBindings:
             self.quitting = False
             self.code_cell()
 
-        @self.key_bindings.add("c-e", filter=command_mode)
+        @self.key_bindings.add("c-c","c-c", filter=command_mode)
         async def c_e(event):
             self.quitting = False
             await self.queue_run_cell()
